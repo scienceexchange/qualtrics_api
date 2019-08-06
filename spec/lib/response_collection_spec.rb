@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe QualtricsAPI::QuestionCollection do
+describe QualtricsAPI::ResponseCollection do
   describe "integration" do
     subject { described_class.new }
     let(:survey_id) { 'SV_8fiumg3ALoKFx7T' }

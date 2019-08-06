@@ -48,6 +48,7 @@ module QualtricsAPI
     def_delegator :client, :panels
     def_delegator :client, :event_subscriptions
     def_delegator :client, :questions
+    def_delegator :client, :responses
 
     def connection(parent = nil)
       return parent.connection if parent && parent.connection

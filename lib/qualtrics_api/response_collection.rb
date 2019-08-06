@@ -1,5 +1,5 @@
 module QualtricsAPI
-  class QuestionCollection < BaseCollection
+  class ResponseCollection < BaseCollection
     def [](survey_id, response_id)
       find(survey_id, response_id)
     end
