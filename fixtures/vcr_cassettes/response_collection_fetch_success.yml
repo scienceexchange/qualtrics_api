@@ -1,0 +1,37 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://co1.qualtrics.com/API/v3/surveys/SV_8fiumg3ALoKFx7T/responses
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-API-TOKEN:
+      -
+      User-Agent:
+      - Faraday v0.13.1
+  response:
+    status:
+      code: 404
+      message: 
+    headers:
+      request-time:
+      - '2'
+      content-type:
+      - application/json
+      content-length:
+      - '107'
+      date:
+      - Tue, 06 Aug 2019 09:09:17 GMT
+      connection:
+      - close
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"meta":{"httpStatus":"404 - Not Found","error":{"errorMessage":"The
+        requested resource does not exist."}}}'
+    http_version: 
+  recorded_at: Tue, 06 Aug 2019 09:09:17 GMT
+recorded_with: VCR 3.0.3

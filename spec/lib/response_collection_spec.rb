@@ -3,47 +3,37 @@ require 'spec_helper'
 describe QualtricsAPI::QuestionCollection do
   describe "integration" do
     subject { described_class.new }
-    let(:survey_id) { 'SV_a2AcbPZz1DehlOd' }
-    let(:missing_survey_id) { 'SV_a2AcbPZz1Dxxxx' }
-    let(:question_id) { 'QID1' }
-    let(:missing_question_id) { 'QID1xxxx' }
-    let(:question_attr_keys) do
+    let(:survey_id) { 'SV_8fiumg3ALoKFx7T' }
+    let(:missing_survey_id) { 'SV_8fiumg3ALoKxxxx' }
+    let(:response_id) { 'R_1IRyyVJju4AN6UO' }
+    let(:missing_response_id) { 'R_1IRyyVJju4Axxxx' }
+    let(:response_attr_keys) do
       %i[
-        question_text
-        data_export_tag
-        question_type
-        selector
-        sub_selector
-        configuration
-        question_description
-        choices
-        choice_order
-        validation
-        language
-        next_choice_id
-        next_answer_id
-        question_id
-        question_text_unsafe
+        response_id
+        values
+        labels
+        displayed_fields
+        displayed_values
       ]
     end
 
     describe "#find" do
       context 'when exists' do
         let!(:result) do
-          VCR.use_cassette("question_find") do
-            subject.find(survey_id, question_id)
+          VCR.use_cassette("response_find") do
+            subject.find(survey_id, response_id)
           end
         end
 
-        it 'populates the result', skip: 'TODO:' do
-          expect(result.attributes.keys).to match_array(question_attr_keys)
+        it 'populates the result' do
+          expect(result.attributes.keys).to match_array(response_attr_keys)
         end
       end
 
       context 'when does not exist' do
         let!(:result) do
-          VCR.use_cassette("question_find_fail") do
-            subject.find(missing_survey_id, missing_question_id)
+          VCR.use_cassette("response_find_fail") do
+            subject.find(missing_survey_id, missing_response_id)
           end
         end
 
@@ -57,7 +47,7 @@ describe QualtricsAPI::QuestionCollection do
     describe "#fetch" do
       describe "when success" do
         let!(:result) do
-          VCR.use_cassette("question_collection_fetch_success") do
+          VCR.use_cassette("response_collection_fetch_success") do
             subject.each_page(survey_id) do |page|
               return page
             end
@@ -65,13 +55,13 @@ describe QualtricsAPI::QuestionCollection do
         end
 
         it "populates the collection", skip: 'TODO:' do
-          expect(result.first).to be_a QualtricsAPI::Question
+          expect(result.first).to be_a QualtricsAPI::Response
         end
       end
 
       describe "when failed" do
         let!(:result) do
-          VCR.use_cassette("question_collection_fetch_fail") do
+          VCR.use_cassette("response_collection_fetch_fail") do
             subject.each_page(missing_survey_id)
           end
         end

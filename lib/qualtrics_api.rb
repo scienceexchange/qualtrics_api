@@ -33,6 +33,8 @@ require "qualtrics_api/distribution"
 require "qualtrics_api/distribution_collection"
 require "qualtrics_api/distribution_link"
 require "qualtrics_api/distribution_link_collection"
+require "qualtrics_api/response"
+require "qualtrics_api/response_collection"
 
 require "qualtrics_api/services/response_export_service"
 
